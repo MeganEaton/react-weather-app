@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+import Search from "./Search.js";
+
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+      <Search />
+      <p>
+        This app was made by Megan Eaton. The code can be viewed here:{" "}
+        <a href="/" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-github" alt="GitHub icon page link"></i>
         </a>
-      </header>
+      </p>
     </div>
   );
 }
-
-export default App;
