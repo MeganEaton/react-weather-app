@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormatDate from "./FormatDate.js";
 
 export default function Weather() {
   let [weatherData, setWeatherData] = useState(null);
@@ -16,7 +17,7 @@ export default function Weather() {
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       time: "12:30",
-      date: "May 4",
+      date: new Date(response.data.dt * 1000),
       sunrise: "05:30",
       sunset: "20:15",
       moonrise: "21:30",
@@ -41,14 +42,7 @@ export default function Weather() {
         </form>
         <h1 className="location">{weatherData.city}</h1>
         <h2>
-          <ul className="nowTimeDate">
-            <li>
-              <span className="date">Last updated at </span>
-              <span>{weatherData.time} </span>
-              <span className="date">on </span>
-              <span>{weatherData.date}</span>
-            </li>
-          </ul>
+          <FormatDate date={weatherData.date} />
           <div className="row justify-content-sm-center nowRiseSet text-center">
             <div className="col col-sm-4 sunriseTime">
               <i className="wi wi-sunrise" alt="sunrise" title="Sunrise">

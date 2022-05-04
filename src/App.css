@@ -55,7 +55,7 @@ p {
   border-radius: 4px;
   transition: all 200ms ease-in-out;
 }
-.Search .searchButton:hover {
+.Weather .searchButton:hover {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid transparent;
 }
