@@ -1,11 +1,11 @@
 import "./App.css";
 
-import Search from "./Search.js";
+import Weather from "./Weather.js";
 
 export default function App() {
   return (
     <div className="App">
-      <Search />
+      <Weather />
       <p>
         This app was made by Megan Eaton. The code can be viewed here:{" "}
         <a
