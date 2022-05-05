@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FormatDate from "./FormatDate.js";
+import WeatherInfo from "./WeatherInfo.js";
 
-export default function Weather() {
+export default function Weather(props) {
   let [weatherData, setWeatherData] = useState(null);
   let [ready, setReady] = useState(false);
+  let [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     setWeatherData({
@@ -25,10 +26,24 @@ export default function Weather() {
     });
     setReady(true);
   }
+
+  function search() {
+    let apiKey = "af800718d3a8f4106f6f5a11754d006c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
   if (ready) {
     return (
       <div className="weatherApp rounded-0 rounded-top Weather">
-        <form>
+        <form onSubmit={handleSubmit}>
           <button type="button" className="btn btn-light currentLocationButton">
             <i className="fa-solid fa-location-crosshairs"></i>
           </button>
@@ -37,106 +52,15 @@ export default function Weather() {
             type="search"
             placeholder="Please type a new location..."
             autoComplete="off"
+            onChange={handleCityChange}
           />
           <input className="searchButton" type="submit" value="Search" />
         </form>
-        <h1 className="location">{weatherData.city}</h1>
-        <h2>
-          <FormatDate date={weatherData.date} />
-          <div className="row justify-content-sm-center nowRiseSet text-center">
-            <div className="col col-sm-4 sunriseTime">
-              <i className="wi wi-sunrise" alt="sunrise" title="Sunrise">
-                <span className="riseSetTime">{weatherData.sunrise}</span>
-              </i>
-            </div>
-            <div className="col col-sm-4 sunsetTime">
-              <i className="wi wi-sunset" alt="sunset" title="Sunset">
-                <span className="riseSetTime">{weatherData.sunset}</span>
-              </i>
-            </div>
-          </div>
-        </h2>
-        <br />
-        <div className="row">
-          <div className="col">
-            <ul className="nowIconDescription">
-              <li className="nowIcon">
-                <i
-                  className="wi wi-night-sleet"
-                  alt={weatherData.description}
-                ></i>
-              </li>
-              <li className="nowDescription">{weatherData.description}</li>
-            </ul>
-          </div>
-          <div className="col-2">
-            <div className="temperature">
-              {Math.round(weatherData.temperature)}
-            </div>
-          </div>
-          <div className="col-1">
-            <ul className="nowHighLow">
-              <li className="todaysHigh">
-                {Math.round(weatherData.temperatureMax)}
-              </li>
-              <li className="todaysLow">
-                {Math.round(weatherData.temperatureMin)}
-              </li>
-            </ul>
-          </div>
-          <div className="col">
-            <ul className="nowAddDescription">
-              <li className="feelsLike">
-                <i
-                  className="wi wi-thermometer"
-                  alt="feels like"
-                  title="Feels Like"
-                ></i>
-                :{" "}
-                <span id="feels-like">{Math.round(weatherData.feelsLike)}</span>
-                °
-              </li>
-              <li className="humidity">
-                <i
-                  className="wi wi-humidity"
-                  alt="humidity"
-                  title="Humidity"
-                ></i>
-                :<span> {weatherData.humidity}%</span>
-              </li>
-              <li className="windSpeed">
-                <i
-                  className="wi wi-strong-wind"
-                  alt="wind speed"
-                  title="Wind Speed"
-                ></i>
-                : <span></span>
-                <span className="windUnit">
-                  {Math.round(weatherData.wind)} km/h{" "}
-                </span>
-              </li>
-              <li>
-                <i
-                  className="wi wi-moonrise"
-                  alt="moonrise"
-                  title="Moonrise"
-                ></i>
-                :<span> {weatherData.moonrise}</span>
-              </li>
-              <li>
-                <i className="wi wi-moonset" alt="moonset" title="Moonset"></i>:
-                <span> {weatherData.moonset}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {
-    let city = "Boston";
-    let apiKey = "af800718d3a8f4106f6f5a11754d006c";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
     return "Loading...";
   }
 }

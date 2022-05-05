@@ -5,7 +5,7 @@ import Weather from "./Weather.js";
 export default function App() {
   return (
     <div className="App">
-      <Weather />
+      <Weather defaultCity="Boston" />
       <p>
         This app was made by Megan Eaton. The code can be viewed here:{" "}
         <a
