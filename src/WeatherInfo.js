@@ -1,6 +1,7 @@
 import React from "react";
 import FormatDate from "./FormatDate.js";
 import WeatherIcon from "./WeatherIcon.js";
+import WeatherTemperature from "./WeatherTemperature.js";
 
 export default function WeatherInfo(props) {
   return (
@@ -34,20 +35,12 @@ export default function WeatherInfo(props) {
             <li className="nowDescription">{props.data.description}</li>
           </ul>
         </div>
-        <div className="col-2">
-          <div className="temperature">
-            {Math.round(props.data.temperature)}
-          </div>
-        </div>
-        <div className="col-1">
-          <ul className="nowHighLow">
-            <li className="todaysHigh">
-              {Math.round(props.data.temperatureMax)}
-            </li>
-            <li className="todaysLow">
-              {Math.round(props.data.temperatureMin)}
-            </li>
-          </ul>
+        <div className="col">
+          <WeatherTemperature
+            fahrenheit={props.data.temperature}
+            minTemp={props.data.temperatureMin}
+            maxTemp={props.data.temperatureMax}
+          />
         </div>
         <div className="col">
           <ul className="nowAddDescription">
@@ -57,7 +50,8 @@ export default function WeatherInfo(props) {
                 alt="feels like"
                 title="Feels Like"
               ></i>
-              : <span id="feels-like">{Math.round(props.data.feelsLike)}</span>°
+              : <span id="feels-like">{Math.round(props.data.feelsLike)}</span>
+              °F
             </li>
             <li className="humidity">
               <i className="wi wi-humidity" alt="humidity" title="Humidity"></i>
@@ -71,7 +65,7 @@ export default function WeatherInfo(props) {
               ></i>
               : <span></span>
               <span className="windUnit">
-                {Math.round(props.data.wind)} km/h{" "}
+                {Math.round(props.data.wind)} mph{" "}
               </span>
             </li>
             <li>
