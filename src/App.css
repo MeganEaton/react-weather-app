@@ -152,6 +152,16 @@ p {
 .Weather .windUnit {
   font-family: "Roboto", sans-serif;
 }
+
+.WeatherTemperature .units {
+  font-size: 11px;
+  font-weight: 800;
+  font-family: "Space Mono", monospace;
+}
+.WeatherTemperature .units a {
+  text-decoration: none;
+}
+
 .weekday {
   font-family: "Roboto", sans-serif;
   position: relative;

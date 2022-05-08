@@ -18,12 +18,9 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       icon: response.data.weather[0].icon,
-      time: "12:30",
       date: new Date(response.data.dt * 1000),
-      sunrise: "05:30",
-      sunset: "20:15",
-      moonrise: "21:30",
-      moonset: "04:45",
+      sunrise: new Date(response.data.sys.sunrise * 1000),
+      sunset: new Date(response.data.sys.sunset * 1000),
     });
     setReady(true);
   }
