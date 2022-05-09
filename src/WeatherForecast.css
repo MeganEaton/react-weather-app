@@ -1,0 +1,20 @@
+.WeatherForecast {
+  text-align: center;
+  color: #364e68;
+}
+.WeatherForecast .forecastDay {
+  font-weight: 700;
+  font-size: 18px;
+}
+.WeatherForecast .forecastIcon {
+  font-size: 40px;
+}
+.WeatherForecast .forecastTemperatureMax {
+  margin-right: 5px;
+  font-weight: 700;
+  font-size: 17px;
+}
+.WeatherForecast .forecastTemperatureMin {
+  opacity: 0.8;
+  font-size: 17px;
+}
