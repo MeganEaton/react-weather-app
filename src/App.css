@@ -19,8 +19,8 @@ p {
   background: #ebf0f6;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  max-width: 530px;
-  min-width: 530px;
+  max-width: 600px;
+  min-width: 600px;
   max-height: 490px;
   min-height: 490px;
   margin: 30px auto;
@@ -110,7 +110,7 @@ p {
   color: #364e68;
 }
 .Weather .nowDescription {
-  font-size: 18px;
+  font-size: 16px;
   text-transform: capitalize;
   font-family: "Roboto", sans-serif;
 }
@@ -122,6 +122,7 @@ p {
   bottom: 30px;
   color: #364e68;
   font-weight: 600;
+  padding: 0;
 }
 .Weather .temperature {
   font-size: 80px;
