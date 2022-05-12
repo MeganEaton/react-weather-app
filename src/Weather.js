@@ -32,6 +32,15 @@ export default function Weather(props) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
   }
+  function searchLocation(position) {
+    let apiKey = "af800718d3a8f4106f6f5a11754d006c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${position.data.coord.lat}&lon=${position.data.coord.lon}&units=imperial&appid=${apiKey}`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+  function getCurrentLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(searchLocation);
+  }
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -44,7 +53,11 @@ export default function Weather(props) {
     return (
       <div className="weatherApp rounded-0 rounded-top Weather">
         <form onSubmit={handleSubmit}>
-          <button type="button" className="btn btn-light currentLocationButton">
+          <button
+            type="button"
+            className="btn btn-light currentLocationButton"
+            onClick={getCurrentLocation}
+          >
             <i className="fa-solid fa-location-crosshairs"></i>
           </button>
           <input
