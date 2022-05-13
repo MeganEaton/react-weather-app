@@ -34,7 +34,7 @@ export default function Weather(props) {
   }
   function searchLocation(position) {
     let apiKey = "af800718d3a8f4106f6f5a11754d006c";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${position.data.coord.lat}&lon=${position.data.coord.lon}&units=imperial&appid=${apiKey}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.data.coord.lat}&lon=${position.data.coord.lon}&units=imperial&appid=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
   }
   function getCurrentLocation(event) {
